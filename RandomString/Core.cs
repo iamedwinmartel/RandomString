@@ -21,7 +21,10 @@ namespace RandomString
 			{
 				get
 				{
-					return ConfigurationManager.AppSettings["A"]; //Replace this by reading from app.config
+					return a;
+					//I am unable to add System.Configuration in my Macbook for some reason. We can replace this step by following to read from app.config
+					//return Configuration.AppSetting["A"];
+					//Have placed the app.config in solution.
 				}
 				set
 				{
@@ -31,24 +34,28 @@ namespace RandomString
 
 			public string GenerateRandomString()
 			{
-				char[] arr = S.ToCharArray();
+				char[] arrInputString = S.ToCharArray();
 				string OutputString = string.Empty;
 
 				for (int i = 0; i < A; i++)
 				{
 					if (i == 0)
-						OutputString = arr[i].ToString();
+						OutputString = arrInputString[i].ToString();
 
 					char LastLetterInOutput = OutputString.ToCharArray().Last();
 
-					for (int j = 0; j < arr.Length - 1; j++)
+					for (int j = 0; j < arrInputString.Length - 1; j++)
 					{
-						if (arr[j] == LastLetterInOutput)
+						if (arrInputString[j] == LastLetterInOutput)
 							continue;
-						else if (arr[j] != LastLetterInOutput)
+						else if (arrInputString[j] != LastLetterInOutput)
 						{
-							OutputString = OutputString + arr[i].ToString();
-							break;
+							if(i==0)
+								OutputString = arrInputString[j].ToString();
+							else
+								OutputString = OutputString + arrInputString[j].ToString();
+
+                        break;
 						}
 					}
 					

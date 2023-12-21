@@ -8,8 +8,10 @@ public class Tests
     [TestCase("abcde")]
     public void Test1(string S)
     {
+        string Output;
         Core core = new Core();
         core.S = S;
-        core.GenerateRandomString();
+        core.A = 10;
+        Output = core.GenerateRandomString();
     }
 }
