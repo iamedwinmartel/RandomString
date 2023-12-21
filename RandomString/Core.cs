@@ -64,6 +64,49 @@ namespace RandomString
 				return OutputString;
 
 			}
+
+        public string GenerateRandomStringUsingRandomClass()
+        {
+            char[] arrInputString = S.ToCharArray();
+            string OutputString = string.Empty;
+
+			OutputString = GetRandomLetterFromString();
+            
+            for (int i = 0; i < A; i++)
+			{ 
+				for (int j = 0; j < arrInputString.Length - 1; j++)
+				{
+                    string LastLetterInOutput = OutputString.Last().ToString();
+                    string RandomLetter = GetRandomLetterFromString();
+                    if (LastLetterInOutput == RandomLetter)
+						continue;
+					else
+					{
+						if (i == 0)
+							OutputString = RandomLetter;
+						else
+						{
+							OutputString = OutputString + RandomLetter;
+							break;
+						}
+					}
+				}
+             }
+
+    
+            return OutputString;
+
+        }
+
+
+        public string GetRandomLetterFromString()
+			{
+				string RandomLetter;
+				Random random = new Random();
+				int i = random.Next(0, S.Length-1);
+				RandomLetter = S.ToCharArray()[i].ToString();
+				return RandomLetter; 
+			}
 	}
 }
 
